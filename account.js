@@ -15,9 +15,6 @@ async function send_eth(){
 }
 // send_eth()
 // console.log(account);
-// console.log(wallet);
-const my_contract = new web3.eth.Contract(ABI,CONTRACT_ADDRESS);
-(async function transfer(){
-    const transaction_receipt = await my_contract.methods.doSomething().send({from:trnf_wallet[0]})
-    console.log(transaction_receipt);
-})()
+console.log(wallet);
+
+

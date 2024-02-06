@@ -1,10 +1,7 @@
 const { Web3 } =  require('web3');
-
-// Connect to the Ethereum network using the HTTP provider
 const ganacheUrl = 'http://localhost:7545';
 const httpProvider = new Web3.providers.HttpProvider(ganacheUrl);
 const web3 = new Web3(httpProvider);
-
 async function main() {
   try {
     // Get the current block number from the network
@@ -30,5 +27,29 @@ async function main() {
     console.error('An error occurred:', error);
   }
 }
+async function balance()
+{
+   const accounts = await web3.eth.getAccounts()
+   const balance = await web3.eth.getBalance(accounts[0]) 
+   const balance2 = await web3.eth.getBalance(accounts[1])
+   console.log("available balance is"+balance);
+   console.log("available balance is"+balance2);
+}
+async function gas_price()
+{
+  const gp = await web3.eth.getGasPrice()
+  console.log(gp);
+}
 
+async function est() {
+  const transaction = {
+    from:'0x4Ec6586C290A8D7AE29B0d7b89B37D75D62C0896',
+    to:'0xee30A694E4fC9DcC6140F3AE28C416EE2092eeEc',
+    value:'0x2'
+  }
+  await web3.eth.estimateGas(transaction).then(console.log)
+}
+est()
 main();
+balance()
+gas_price()
