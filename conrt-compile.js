@@ -1,14 +1,11 @@
-// This code will compile smart contract and generate its ABI and bytecode
-// Alternatively, you can use something like `npm i solc && npx solcjs MyContract.sol --bin --abi`
-
 const solc = require('solc');
-const path =require('path');
-const fs =require('fs');
+const path = require('path');
+const fs = require('fs');
 
-const fileName = 'myContract.sol';
-const contractName = 'MyContract';
+const fileName= 'new-contract.sol';
+const contractName= 'MyContract';
 
-// Read the Solidity source code from the file system
+// Read the Solidity source code require( the file system
 const contractPath = path.join(__dirname, fileName);
 const sourceCode = fs.readFileSync(contractPath, 'utf8');
 

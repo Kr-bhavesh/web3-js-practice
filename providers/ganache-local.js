@@ -4,15 +4,12 @@ const httpProvider = new Web3.providers.HttpProvider(ganacheUrl);
 const web3 = new Web3(httpProvider);
 async function main() {
   try {
-    // Get the current block number from the network
     const currentBlockNumber = await web3.eth.getBlockNumber();
     console.log('Current block number:', currentBlockNumber);
 
     // Get the list of accounts in the connected node (e.g., Ganache)
     const accounts = await web3.eth.getAccounts();
 
-    // Send a transaction to the network and wait for the transaction to be mined.
-    // Note that sending a transaction with Ganache will cause it, in its default configuration, to min a new block.
     const transactionReceipt = await web3.eth.sendTransaction({
       from: accounts[0],
       to: accounts[1],
@@ -32,6 +29,13 @@ async function balance()
    const accounts = await web3.eth.getAccounts()
    const balance = await web3.eth.getBalance(accounts[0]) 
    const balance2 = await web3.eth.getBalance(accounts[1])
+   await web3.eth.getBlockTransactionCount("0x73954C3b4E5BE2bc376786837c71723a0E8E422D").then(console.log)
+   await web3.eth.getBlockUncleCount("0x73954C3b4E5BE2bc376786837c71723a0E8E422D").then(console.log)
+   await web3.eth.getChainId().then(console.log)
+   await web3.eth.getCode("0xF1e05B2f2913561Ae771C2D1653F68fC387753CF").then(console.log)
+   await web3.eth.getProtocolVersion().then(console.log)
+   await web3.eth.getStorageAt("0xF1e05B2f2913561Ae771C2D1653F68fC387753CF",0).then(console.log)
+  //  await web3.eth.getPendingTransactions().then(console.log);
    console.log("available balance is"+balance);
    console.log("available balance is"+balance2);
 }
@@ -49,7 +53,7 @@ async function est() {
   }
   await web3.eth.estimateGas(transaction).then(console.log)
 }
-est()
+// est()
 main();
-balance()
-gas_price()
+// balance()
+// gas_price()
